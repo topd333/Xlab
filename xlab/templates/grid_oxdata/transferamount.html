@@ -1,0 +1,59 @@
+{% extends "layout_2_col.html" %}
+{% block extrahead %}{% endblock %}
+
+{% load i18n %}
+
+{% block navigation %}
+    {% include "partials/nav_primary.html" %}
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block column_left %}
+
+{% include "grid_oxdata/leftside_nav.html" with expand_dropdown=1 %}
+{% endblock %}
+
+{% block content %}
+<form method="post">
+{% csrf_token %}
+    <div class="form-group">
+      <label for="name">User Name</label>
+      <select name="toaccount" class="form-control">
+            {% for user in users %}
+                <option value="{{ user.principal_id }}">{{ user.firstname }} {{ user.lastname }}</option>
+            {% endfor %}
+        </select>
+   </div>
+   <div class="form-group">
+      <label for="name">Amount</label>
+      <input type="text" name='amount' class="form-control" id="text1" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" />
+        <span id="error" style="color: Red; display: none">* Input digits (0 - 9)</span>
+   </div>
+   <div class="form-group">
+      <input type="submit" value="submit" class="form-control">
+   </div>
+</form>
+{% endblock content %}
+
+
+{% block extrascripts %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/metro-bootstrap.css">
+    <script src="{{ STATIC_URL }}js/jquery.widget.min.js"></script>
+    <script src="{{ STATIC_URL }}js/metro.min.js"></script>
+    <script src="{{ STATIC_URL }}js/metro-dropdown.js"></script>
+
+    <script type="text/javascript">
+        var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+        function IsNumeric(e) {
+            var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            document.getElementById("error").style.display = ret ? "none" : "inline";
+            return ret;
+        }
+    </script>
+{% endblock %}

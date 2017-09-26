@@ -1,0 +1,121 @@
+{% extends "grid_my/layout.html" %}
+{% load promotion_tags %}
+
+{% comment %}
+Keep the same header and footer as the standard layout template but override the 
+main content area to split it into a sidebar and a content block
+{% endcomment %}
+
+{% block content_wrapper %}
+    <div class="section-left">
+        {% block column_left %}            
+                <div class="section-left-box">
+                    <h2>{{ request.user.get_firstname_lastname }}</h2>
+                    <ul class="topnav">
+                        <li class="active"><a href="{% url 'my_deshbord' %}">Home</a>
+                        </li>
+                        <li><a href="javascript:void(0)">Account</a>
+                            <ul>
+                                <li><a href="{% url 'account_summary'  %}">Account Summary</a>
+                                </li>
+                                <li><a href="{% url 'premium-membership' %}">Premium Membership</a>
+                                </li>
+                                <li><a href="javascript:void(0)">Account Histroy/Statements</a>
+                                </li>
+                                <li><a href="{% url 'transaction_history' %}">Ln$Transaction History</a>
+                                </li>
+                                <li><a href="{% url 'contact_information' %}">Contact Information</a>
+                                </li>
+                                <li><a href="javascript:void(0)">Scripted Agent Status</a>
+                                </li>
+                                <li><a href="javascript:void(0)">Mesh Upload Status</a>
+                                </li>
+                                <li><a href="{% url 'change_password'  %}">Change Password</a>
+                                </li>
+                                <li><a href="javascript:void(0)">Patners</a>
+                                </li>
+                                <li><a href="javascript:void(0)">Billing Information</a>
+                                </li>
+                                <li><a href="javascript:void(0)">Delete Account</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="javascript:void(0)">Events</a>
+                        </li>
+                        <li><a href="javascript:void(0)">Shop</a>
+                            <ul>
+                                <li><a href="{% url 'buy-linkin-dollar' %}">My Funds</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="javascript:void(0)">Land Manager</a>
+                            <ul>
+                                <li><a href="javascript:void(0)">Land Manager 1</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-left-box">
+                    <h2>Connect & Share</h2>
+                    <ul class="side-menu">
+                        <li><a href="javascript:void(0)"><i class="fa fa-arrows"> </i> My LinkinU Life</a>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-twitter"> </i>Follow Us on Twitter</a>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-facebook"> </i>Become a Facebook fan</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-left-box">
+                    <h2>Linkin Exchange</h2>
+                    <div class="currently-balance">You currently have: <a href="javascript:void(0)"> L$305</a>
+                    </div>
+                    <ul class="side-menu two-part">
+                        <li><a href="{% url 'buy-linkin-dollar' %}"><i class="fa fa-shopping-cart"> </i>Buy L$</a>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-wrench"> </i>Manage</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="section-left-box">
+                    <h2>Friends</h2>
+                    <ul class="name-status">
+                        <li class="fried-name">Name</li>
+                        <li class="fried-status">Status</li>
+                    </ul>
+                    <ul id="shopping_list">
+                        {% for friend in friends %}
+                            <li>
+                              <a href="javascript:void(0)">{{ friend.get_firstname_lastname}} 
+                                <span class="status-update">
+                                <img src="{{ STATIC_URL }}images/online.png" alt="online">
+                                </span>
+                              </a>
+                            </li>
+                        {% endfor%}
+                    </ul>
+
+                    <ul class="side-menu two-part my-counter">
+                        <li>
+                            <div id="shopping_list_counter"></div>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-wrench"> </i>Manage</a>
+                        </li>
+                    </ul>
+                </div>
+            
+        {% endblock %}
+    </div>
+    <div class="section-right">
+      {% block content %}
+
+
+      {% endblock %}
+    </div>
+{% endblock %}

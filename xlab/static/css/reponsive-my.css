@@ -1,0 +1,126 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+@media only screen and (max-width:991px) {
+.logo{ text-align:center; width:100%; padding:20px 0 10px 0;}
+.menu{ width:100%; padding-top:0;}
+.footer-row-one{ width:33.33%;}
+.footer-row-right{ width:100%;}
+.section-left-box h2{ font-size:13px;}
+ul.two-part li{ width:100%;}
+.select-field{ width:100%; padding-left:0; padding-top:10px;}
+.field-sec-half{ width:100%; padding-right:0; padding-bottom:10px;}
+ul.topnav li a, ul.side-menu li a, #shopping_list a, ul.status-right li, .shopping_list1 a, .shopping_list2 a, ul.footer-link li a, .accont-left, .accont-right{ font-size:12px;}
+ul.side-menu li a i{ padding-right:3px;}
+.footer-top h2{ font-size:15px;}
+ul.date-range-field li{ margin-left:0; width:100%; margin-bottom:10px;}
+.range-field{ width:100%;}
+ul.premium li{ width:100%; margin-right:0; min-height:inherit; padding-bottom:20px;}
+.events-row-one-left{ width:100%;}
+.events-row-one-right{ width:100%;}
+.events-row-two-left{ width:100%; padding-bottom:15px;}
+.events-row-two-right{ width:100%;}
+.events-row-two-right .contry-list{ width:46%; margin:0 2%;}
+.login-before-right{ text-align:center; width:100%;}
+.login-before-left{ width:100%; min-height:inherit; padding-bottom:20px; margin-bottom:20px;}
+
+ul.inbox-message li .dropdown-menu{ right:0; left:inherit;}
+
+}
+
+@media only screen and (max-width:767px) {
+.menu .navbar-default{ background-color: #f8f8f8; border-color: #e7e7e7;}
+.section-right-left{ width:100%;}
+.section-right-right{ width:100%;}
+.right-row-one > img { width: 100%;}
+.menu  .nav > li{ background:none;} 
+.menu .navbar-toggle{ width:100%; margin-right:0;}
+.table-scroll-response{ overflow:auto;}
+.account-table-main{ width:700px;}
+ul.my-page li{ margin-bottom:10px;}
+}
+
+
+@media only screen and (max-width:750px) {
+.header-top{ background:#003352;}
+.header-top-left{ width:100%; text-align:center;}
+.header-top-right{ width:100%;}
+ul.language-select{ float:right; margin-left:0;}
+ul.language-select li a{ padding-right:10px;}
+.section-left{ width:100%;}
+.section-right{ width:100%;}
+ul.two-part li{ width:50%;}
+ul.side-menu li a{ padding:13px;}
+.contact-info-left{ width:40%;}
+.contact-info-right{ width:56%; float:right;}
+}
+
+@media only screen and (max-width:640px) {
+.my-fund-left{ width:100%;}
+.my-fund-right{ width:100%; padding-top:15px;}
+}
+
+@media only screen and (max-width:568px) {
+.header-top-left{ text-align:left;}
+ul.language-select{ position:absolute; right:0; top:0;}
+.top-search{ width:100%;}
+.header-top-right{ padding-bottom:15px;}
+	.header-top-left, ul.language-select li a{ font-size:12px;}
+	.footer-row-one{ width:50%; min-height:180px;}
+	.footer-row-right{ width:50%;}
+	.footer-bottom-left{ width:100%; padding-bottom:10px; text-align:center;}
+	ul.link-footer-right{ width:100%;}
+	.top-heading{ font-size:18px;}
+	.accont-left{ width:45%;}
+	.accont-right{ width:51%; float:right;}
+	.contact-info-left{ width:100%; font-size:12px; padding-top:0;}
+	.contact-info-right{ width:100%;}
+	.contact-info-right label{ font-size:11px;}
+	.info-txt{ font-size:12px;}
+	.search-left{ width:100%; padding-bottom:10px; text-align:center;}
+	.search-right{ width:100%; padding-bottom:10px;}
+	ul.premium-pack li input[type="checkbox"]:not(old) + label, input[type="radio"]:not(old) + label{ padding-left:30px; font-size:12px;}
+	.premium-right{ font-size:12px;}
+	.account-table td{ font-size:12px;}
+	.account-table td{ padding:8px 15px;}
+	.my-fund-left{ padding:5px;}
+	.my-fund-table td{ font-size:12px;}
+	.my-fund-cal{ width:100%; font-size:12px;}
+	ul.group-info li{ padding:7px; font-size:12px;}
+	ul.group-info li.account-heading{ font-size:12px;}
+	.group-left{ width:70%;}
+	.group-right{ width:28%;}
+	.follow-right{ width:100%; float:left; padding-top:20px;}
+	ul.inbox-message li{ padding-right:25px;}
+	.follow-pic{ padding-right:5px;}
+	.people-left{ font-size:12px;}
+	.login-before-left img{ margin-right:5px;}
+}
+
+@media only screen and (max-width:480px) {
+	.people-right{ width:100%; padding-top:56px;}
+	ul.inbox-message li .dropdown{ margin-left:0; margin-right:5px;}
+	.people-right .btn{ margin-left:0;}
+	.login-before-left .nav-tabs > li a{ font-size:12px; padding: 8px 3px;}
+}
+
+
+@media only screen and (max-width:360px) {
+.footer-row-right{ width:100%; padding-top:15px;}
+ul.social-link{ padding-bottom:10px;}
+.accont-left{ padding-left:5px;}
+.contact-info-right label{ font-size:10px;}
+.premium-right{ display:block; text-align:center; width:100%;}
+.land-use-btn .reset-calculate-btn{ clear:both; margin-left:0; margin-bottom:5px; width:100%;}
+.land-use-btn{ width:100%;}
+input[type="checkbox"]:not(old) + label, input[type="radio"]:not(old) + label{ height:22px;}
+ul.premium-pack li input[type="checkbox"]:not(old) + label, input[type="radio"]:not(old) + label{ padding-left:30px; font-size:11px;}
+.calender-dv{ padding:12px 9px 18px;}
+.pic-side{ width:100%; text-align:center; padding-left:0;}
+.events-row-two-right .contry-list{ width:100%; margin:0 0 10px 0;}
+.events-row-two-left p{ font-size:11px;}
+.events-row-two-left h3{ font-size:15px;}
+
+}

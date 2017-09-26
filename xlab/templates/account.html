@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base_linki.html" %}
+{% load i18n %}
+{% block content %}
+  {% include navbar %}
+  <div class="body_container" style="top:0px;">
+    {% block body_content %}
+    {% if notify %}
+    {# can send the level of the alert too #}
+      <div class="alert alert-info">
+        <button type="button" class="close"
+          data-dismiss="alert">&times;</button>
+        <strong>Info! : </strong>{{ notify }}
+      </div>
+    {% endif %}
+    {% if application == 'summary' %}
+    <style>
+      .account-general {
+        position:absolute;
+        border: 6px solid;
+        border-color: #e0e0e0;
+        background-color: #f0f0f0;
+        box-shadow: 5px 5px 5px #c0c0c0;
+        width: 400px;
+        height: 200px;
+        left: 30px;
+        border-bottom-left-radius: 20px;
+      }
+      .account-label {
+        background-image: -webkit-linear-gradient(top, white, #f2f2f2);
+        background-image: -o-linear-gradient(tobottom, white, #f2f2f2);
+        background-repeat: repeat-x;
+        box-shadow: 0px 3px 3px #e0e0e0;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        padding-bottom: 4px;
+        padding-top: 4px;
+        background-color: #FAFAFA;
+      }
+    </style>
+    <div class="account-general">
+      <div class="account-label"><center>Email Address</center></div>
+      <div style="padding:15px;">
+        {{ user.email }}
+      </div>
+      <div class="account-label"><center>Password</center></div>
+      <div style="padding:15px;">
+        ************************
+      </div>
+      <div style="width:100%;background-color:red;position:absolute;" >
+        <div class="btn-group" style="position:absolute;left:170px;">
+        <button class="btn">
+          Change
+        </button>
+        <button class="btn dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#email" data-toggle="modal">Change Email Address</a></li>
+          <li><a href="#password" data-toggle="modal">Change Password</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    {% endif %}
+
+    {% endblock %}
+  </div>
+
+
+  <!----------[ Forms Here ]---------->
+  <div id="email" class="modal hide fade form-horizontal"  tabindex="-1" role="dialog" aria-labeledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h1>Change Email Address</h1>
+    </div>
+    <!--<div id="div_id_email" class="control-group modal-body">-->
+    <div class="modal-body">
+    <form class="form-horizontal" action="/account/" method='POST' autocomplete="off">
+      {% csrf_token %}
+      <div id="div_id_email" class="control-group">
+        <label for="id_email" class="control-label requiredField">New Email <span class="asteriskField">* </span></label>
+        <div class="controls">
+          <input class="textinput textInput" id="id_email" maxlength="98" name="email" type="email" required placeholder="Email address"/>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+    <div class="modal-footer">
+        An Email will be sent to the address for confirmation
+    </div>
+    </form>
+  </div>
+
+  <!-- Password -->
+  <div id="password" class="modal hide fade form-horizontal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form class="form-horizontal" action="/account/change_password" method='POST' autocomplete="off">
+      {% csrf_token %}
+    <div style="text-align:left" class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <!-- Form Name -->
+      <h1>Change Password</h1>
+    </div>
+
+    <div id="div_id_passwd" class="control-group modal-body">
+      <label for="id_passwd" class="control-label requiredField"><span class="asteriskField">* </span>New Password</label>
+      <div class="controls">
+        <input class="textinput textInput" id="id_passwd" maxlength="98" name="password" type="password" />
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+    <div class="modal-footer">
+        An Email will be sent for confirmation
+    </div>
+    </form>
+  </div>
+{% endblock %}
+</html>

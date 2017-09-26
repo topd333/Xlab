@@ -1,0 +1,99 @@
+{% extends "base-join.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="header">
+    <div class="container">
+        <div class="header-inner">
+            <div class="logo">
+                <a href="javascript:void(0)">
+                    <img src="{{ STATIC_URL }}images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="language">
+                <ul class="language-select">
+                    <li><a href="javascript:void(0)"> Language  <i class="fa fa-angle-double-down"> </i> </a> 
+                        <ul class="no-display">
+                            <li> <a href="javascript:void(0)">English</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">日本語</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Deutsch</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Français</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Español</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Português</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Italiano</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Türkçe</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">русская</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="bottom-bg">
+        <div class="container">
+            <div class="inner-wizard">
+
+                    <div class="login-page">
+                        <div class="login-left">
+                          <form  action={{ form_action }} id="auth_user_form" class="blueForms" method="post" >
+                            <h2>Sign In</h2>
+                            <div><label>{{ state }}</label></div>
+                            {% csrf_token %}
+                            <label>LinkinULife Username: <a id="" class="detail-tip element" href="javascript:void(0)" data-toggle="popover" data-content="Your username is both your screenname in LinkinULife and your login ID. Accounts created prior to June 2010 may have both a first and last name (Example: First Last), while newer accounts may only have a single username."><i class="fa fa-question-circle"> </i></a>
+                            </label>
+                            <input class="textinput textInput txt-field" id="id_email" maxlength="98" name="email" type="email" placeholder="Email Address" required/>
+
+                            <label>LinkinULife Password:</label>
+                            <!-- <input class="txt-field" type="text"> -->
+                            <input class="textinput textInput txt-field" id="id_password" maxlength="18" name="password" type="password" required placeholder="Password" /> 
+
+                            <label>
+                                <input type="checkbox">Remember me on this computer</label>
+
+                            <a href="javascript:void(0)" class="forgot">Forgot your login information?</a>
+
+                            <div class="login-btn">
+                                <input type="submit" value="Login" class="login-left-btn">
+                            </div>
+                          </form>
+                        </div>
+
+                        <div class="login-right">
+                            <h2> Sign Up Today!</h2>
+                            <p>Join LinkinULife and become part of the Internet's largest user-created, 3D virtual community.</p>
+                            <ul class="join-txt">
+
+                                <li>Connect with friends.</li>
+                                <li>Meet new people with voice and text chat.</li>
+                                <li>Explore thousands of unique 3D locations.</li>
+                                <li>Create and design your own look.</li>
+                            </ul>
+
+                            <div class="free-member">Membership is FREE!</div>
+
+
+                            <div class="login-btn join-btn">
+                                <a href="/register/" class="login-left-btn"> Join Now </a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+

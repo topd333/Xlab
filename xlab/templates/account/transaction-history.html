@@ -1,0 +1,229 @@
+{% extends "grid_my/layout_2_col.html" %}
+{% load i18n %}
+
+{% block content %}
+
+                <div class="top-heading">Transaction History</div>
+
+                <div class="info-txt">These are your Linkin Dollar (L$) transactions for the previous 32 days. For your US$ billing account history, please follow this <a href="javascript:void(0)">link.</a> 
+                </div>
+
+                <div class="color-tab">Only dates in the last 32 days are available.</div>
+
+
+                <div class="show-transacation">
+                    <input id="checkbox1" type="checkbox" name="checkbox" value="1">
+                    <label for="checkbox1">Show Ln$0 transactions</label>
+                </div>
+
+                <div class="date-range-txt">Date range</div>
+
+                <ul class="date-range-field">
+                    <li>
+                        <input type="text" class="range-field">
+                        <a class="calender-right" href=""><i class="fa fa-calendar"> </i></a>
+                    </li>
+                    <li>
+                        <input type="text" class="range-field">
+                        <a class="calender-right" href=""><i class="fa fa-calendar"> </i></a>
+                    </li>
+                    <li>
+                        <input class="range-btn" type="button" value="View">
+                    </li>
+                </ul>
+
+                <div class="show-transacation">Download for this date range: <a href="javascript:void(0)">CSV</a> -<a href="javascript:void(0)"> XLS</a> -<a href="javascript:void(0)"> XML</a> 
+                </div>
+
+
+                <div class="section-right-full">
+                    <h2>Subtotal for entire date range </h2>
+
+
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="account-table table-responsive">
+                        <tr class="account-table-heading">
+                            <td align="center">Debit</td>
+                            <td align="center">Credit</td>
+                        </tr>
+                        <tr>
+                            <td align="center">Ln$10550</td>
+                            <td align="center">Ln$0</td>
+                        </tr>
+                    </table>
+
+
+                    <div class="date-range-txt">Filter transactions</div>
+
+                    <ul class="date-range-field">
+                        <li>
+                            <input type="text" class="range-field">
+                        </li>
+                        <li>
+                            <input class="range-btn" type="button" value="Fliter">
+                        </li>
+                        <li>
+                            <input class="range-btn" type="button" value="Clear">
+                        </li>
+                    </ul>
+
+                    <ul class="search-result">
+                        <li>
+                            <div class="search-left">4 search results</div>
+                            <div class="search-right">
+                                <div class="search-right1">Items per page</div>
+                                <div class="contry-list search-right2">
+                                    <select name="country_id" id="" class="gen" tabindex="1">
+                                        <option>All</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                    </select>
+                                </div>
+                                <div class="search-right3"><a href="javascript:void(0)">Show all</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+
+
+
+
+                    <div class="table-scroll-response">
+
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="account-table-main">
+                            <tr class="account-table-heading">
+                                <td>Date / time</td>
+                                <td>ID prefix</td>
+                                <td align="center">Detail</td>
+                                <td align="center">Debit</td>
+                                <td align="center">Credit</td>
+                                <td align="center">Ending Balance</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>2014-09-24</p>
+                                    <p>17:05:14</p>
+                                </td>
+                                <td>3164d6aa</td>
+                                <td>
+                                    <p>Destination: <span>lbn Aljon</span>
+                                    </p>
+                                    <p>Gift</p>
+                                    <p>Region: AmiGos</p>
+                                </td>
+                                <td align="center">Ln$10500</td>
+                                <td align="center">Ln$0</td>
+                                <td align="center">Ln$25</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>2014-09-24</p>
+                                    <p>17:05:14</p>
+                                </td>
+                                <td>3164d6aa</td>
+                                <td>
+                                    <p>Destination: <span>lbn Aljon</span>
+                                    </p>
+                                    <p>Gift</p>
+                                    <p>Region: AmiGos</p>
+                                </td>
+                                <td align="center">Ln$10500</td>
+                                <td align="center">Ln$0</td>
+                                <td align="center">Ln$25</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>2014-09-24</p>
+                                    <p>17:05:14</p>
+                                </td>
+                                <td>3164d6aa</td>
+                                <td>
+                                    <p>Destination: <span>lbn Aljon</span>
+                                    </p>
+                                    <p>Gift</p>
+                                    <p>Region: AmiGos</p>
+                                </td>
+                                <td align="center">Ln$10500</td>
+                                <td align="center">Ln$0</td>
+                                <td align="center">Ln$25</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>2014-09-24</p>
+                                    <p>17:05:14</p>
+                                </td>
+                                <td>3164d6aa</td>
+                                <td>
+                                    <p>Destination: <span>lbn Aljon</span>
+                                    </p>
+                                    <p>Gift</p>
+                                    <p>Region: AmiGos</p>
+                                </td>
+                                <td align="center">Ln$10500</td>
+                                <td align="center">Ln$0</td>
+                                <td align="center">Ln$25</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>2014-09-24</p>
+                                    <p>17:05:14</p>
+                                </td>
+                                <td>3164d6aa</td>
+                                <td>
+                                    <p>Destination: <span>lbn Aljon</span>
+                                    </p>
+                                    <p>Gift</p>
+                                    <p>Region: AmiGos</p>
+                                </td>
+                                <td align="center">Ln$10500</td>
+                                <td align="center">Ln$0</td>
+                                <td align="center">Ln$25</td>
+                            </tr>
+
+                            <tr class="last-total">
+                                <td colspan="2">Subtotal for filtered results</td>
+                                <td align="center">-</td>
+                                <td align="center">Ln$10550</td>
+                                <td align="center">Ln$0</td>
+                                <td align="center">-</td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                    <ul class="my-page">
+                        <li>
+                            <a href="javascript:void(0)"> <i class="fa fa-angle-left"> </i> 
+                            </a>
+                        </li>
+                        <li><a href="javascript:void(0)"> 1 </a>
+                        </li>
+                        <li><a href="javascript:void(0)"> 2 </a>
+                        </li>
+                        <li><a href="javascript:void(0)"> 3 </a>
+                        </li>
+                        <li><a class="page-active" href="javascript:void(0)"> 4 </a>
+                        </li>
+                        <li><a href="javascript:void(0)"> 5 </a>
+                        </li>
+                        <li><a href="javascript:void(0)"> ...  </a>
+                        </li>
+                        <li><a href="javascript:void(0)"> 10 </a>
+                        </li>
+                        <li><a href="javascript:void(0)"> 20 </a>
+                        </li>
+                        <li><a href="javascript:void(0)"> 30 </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"> <i class="fa fa-angle-right"> </i> 
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+{% endblock content %}

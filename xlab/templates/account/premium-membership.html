@@ -1,0 +1,115 @@
+{% extends "grid_my/layout_2_col.html" %}
+{% load i18n %}
+{% block content %}
+    <div class="top-heading"> Your Premium Membership  </div>
+    <div class="section-right-full">
+        <h2>Your Premium Benefits</h2>
+        <ul class="premium">
+            <li>
+                <h3>Explore your Linkin Home </h3>
+                <div class="premium-box">
+                    <div class="premium-box-left"> <i class="fa fa-home "> </i> </div>
+                    <div class="premium-box-right">
+                        <p> Visit your Linkin Home now — or, if eligible, claim one now at no cost!</p>
+                        <a href="javascript:void(0)">Go Now »</a>
+                    </div>
+                </div>
+                <div class="restrictions">Restrictions Apply</div>
+            </li>
+            
+            <li>
+                <h3>Exclusive Premium-Only Areas  </h3>
+                <div class="premium-box">
+                    <div class="premium-box-left"> <i class="fa fa-star"> </i> </div>
+                    <div class="premium-box-right">
+                        <p> You have exclusive access to Premium-only areas, including Magellan's Grid Hunt, Racer's Gulch and even Sandboxes for building and creating your own content. </p>
+                        <div class="linking-all">
+                            <a href="javascript:void(0)">Go to Magellan's Grid Hunt »</a>
+                            <a href="javascript:void(0)">Go to Racer's Gulch »</a>
+                            <a href="javascript:void(0)">Go to Premium Sandboxes » </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+            <li>
+                <h3>Grab your Premium Gift  </h3>
+                <div class="premium-box">
+                    <div class="premium-box-left"> <i class="fa fa-gift"> </i> </div>
+                    <div class="premium-box-right">
+                        <p> Claim the latest Premium Gift now at one of the many inworld vending kiosks listed in the <a href="javascript:void(0)"> LinkinU Life Destination Guide.</a> </p>
+                        <div class="linking-all">
+                            <a href="javascript:void(0)">Learn More » </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+            <li>
+                <h3>Shop with your Virtual Currency Rewards </h3>
+                <div class="premium-box">
+                    <div class="premium-box-left"> <i class="fa fa-empire"> </i> </div>
+                    <div class="premium-box-right">
+                        <p> Each week, your account receives a stipend of $L300 automatically. After 45 consecutive days as a premium member, we also give you a one-time L$1000 bonus. Use your rewards to  <a href="javascript:void(0)">shop!</a> </p>
+                        <div class="linking-all">
+                            <a href="javascript:void(0)">See your L$ History »  </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+            <li>
+                <h3>Get Help via Live Chat </h3>
+                <div class="premium-box">
+                    <div class="premium-box-left"> <i class="fa fa-headphones"> </i> </div>
+                    <div class="premium-box-right">
+                        <p> As a Premium Member, you qualify for enhanced support via live chat, in addition to other support options provided to Basic members.  </p>
+                        <div class="linking-all">
+                            <a href="javascript:void(0)">Visit the Support Portal »  </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+            <li>
+                <h3>Take advantage of your building rights on the Mainland</h3>
+                <div class="premium-box">
+                    <div class="premium-box-left"> <i class="fa fa-lock"> </i> </div>
+                    <div class="premium-box-right">
+                        <p> Interested in having a presence on the Mainland, which is the largest connected land-mass in Second Life? This exclusive opportunity is available to our Premium Members only. </p>
+                        <div class="linking-all">
+                            <a href="javascript:void(0)">Learn More »  </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        
+        <h2>Manage Membership</h2>
+        
+        <div class="preminum-plan">Premium Membership Plans</div>
+        
+        <ul class="premium-pack">
+            <li> <input id="radio1" type="radio" {% if userplan.plan.planname == 'premium - annual membership'%} checked {% endif %} name="radio" value="1"><label for="radio1">Premium - Annual Membership</label>  <span class="premium-right"> USD 72.00 per year</span></li>
+            <li> <input id="radio2" type="radio" {% if userplan.plan.planname == 'premium - quarterly membership'%} checked {% endif %} name="radio" value="2"><label for="radio2">Premium - Quarterly Membership</label>  <span class="premium-right">USD 22.50 per quarter</span></li>
+            <li> <input id="radio3" type="radio" {% if userplan.plan.planname == 'premium - monthly membership'%} checked {% endif %} name="radio" value="3"><label for="radio3">Premium - Monthly Membership</label> <span class="premium-right">USD 9.95 per month</span></li>
+        </ul>
+        
+        <div class="change-plan">If you change your plan, it will become effective at your next billing date. All rates are quoted in US Dollars.</div>
+        
+        
+        <div class="preminum-plan">Basic Membership </div>
+        
+        <ul class="premium-pack change-bg">
+            <li> <input id="radio4" type="radio" {% if userplan.plan.planname == 'basic membership'%} checked {% endif %} name="radio" value="4"><label for="radio4">Basic Membership</label>  <span class="premium-right"> Free*</span></li>
+        </ul>
+        
+        <div class="download-warning">
+            <span>* Downgrade Warning:</span> If you choose to downgrade from Premium to a Basic membership, all Premium benefits will be lost, and re-upgrading to Premium at a later date will gain whatever premium membership benefits are in effect at the time the membership is upgraded. Original Premium benefits will not be restored.
+        </div>
+        
+        <div class="member-btn"><input type="button" value="Change Membership" class="change-member"> </div>
+        
+        
+    </div>
+{% endblock content %}

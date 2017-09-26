@@ -1,0 +1,48 @@
+DEV_TEST_VIEWS = True
+
+ADMINS = (
+    ('Admin User', 'admin@example.com'),
+)
+MANAGERS = ADMINS
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'aelerons',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': 'aelerons',
+        'PASSWORD': 'aelerons',
+        'HOST': '127.0.0.1',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '3306',                      # Set to empty string for default.
+    }
+}
+
+
+
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '1234567981011121314151617181920212223242526272829'
+
+SITE_NAME = 'Aelerons'
+LOGIN_URL="/login"
+AUTH_USER_MODEL = 'grid_user.User'
+AUTH_SERVER_URL = 'http://robust_auth.net:8003'
+ACCOUNT_SERVER_URL = 'http://robust_account.net:8003'
+ACCOUNT_ADMIN_EMAIL = 'account_admin@example.com'
+
+XMLRPC_GATEWAY_IP = '192.168.1.254'
+
+# Address of server for aelerons region ini
+INI_SERVER_ADDRESS = 'http://alerons_region_ini.server.net:8880/'
+
+# Grid-Wide Estate Database Default Settings
+ESTATE_DATABASE='estate'
+ESTATE_DATASOURCE='example.com'
+ESTATE_DATABASE_PORT='3306'
+ESTATE_DATABASE_USER='estate_admin'
+ESTATE_DATABASE_PASSWORD='estate_dba'
+
+DEFAULT_ESTATE_NAME = "Mainland"
+DEFAULT_ESTATE_OWNER_NAME = "Estate Owner"
+

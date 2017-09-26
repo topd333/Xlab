@@ -1,0 +1,47 @@
+{% extends "base_linki.html" %}
+{% load crispy_forms_tags %}
+
+
+    {% block content %}
+
+    <script type="text/javascript">
+	    $(document).ready(function(){
+	    	$(".collapse").collapse();
+	    });
+    </script>
+   <!--  <div class="accordion" id="accordion2">
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+					Collapsible Group Item #1
+					</a>
+				</div>
+				<div id="collapseOne" class="accordion-body collapse in">
+					<div class="accordion-inner">
+					Anim pariatur cliche...
+					</div>
+				</div>
+			</div>
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+					Collapsible Group Item #2
+					</a>
+				</div>
+				<div id="collapseTwo" class="accordion-body collapse">
+					<div class="accordion-inner">
+					Anim pariatur cliche...
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<div  class="span6">
+    <form method="post" enctype="multipart/form-data">
+ 
+    	{% crispy form form.helper %}
+		<!-- 	<input type="submit" name="submit" value="Submit"> -->
+    </form>
+    </div>
+    {% endblock %}
+
+

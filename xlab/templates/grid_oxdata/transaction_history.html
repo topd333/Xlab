@@ -1,0 +1,39 @@
+{% extends "layout_2_col.html" %}
+{% block extrahead %}{% endblock %}
+
+{% load i18n %}
+
+{% block navigation %}
+    {% include "partials/nav_primary.html" with expand_dropdown=1 %}
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block column_left %}
+
+{% include "grid_oxdata/leftside_nav.html" %}
+{% endblock %}
+
+{% block content %}
+<div ></div>
+<h1> Transaction History</h1>
+<h1>{{ amount }}-{{ userid }}</h1>
+
+	<table>
+		<tr><th>Date</th><th>Detail</th><th>Debit</th><th>Credit</th> <th>Amount</th></tr>
+		{% for d in accountdict %}
+			<tr><td>{{ d.date }}</td><td>{{ d.detail }}</td><td>{{ d.debit }}</td><td>{{ d.credit }}</td> <td>{{ d.amount }}</td></tr>
+		{% endfor %}
+	</table>
+{% endblock content %}
+
+
+{% block extrascripts %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/metro-bootstrap.css">
+    <script src="{{ STATIC_URL }}js/jquery.widget.min.js"></script>
+    <script src="{{ STATIC_URL }}js/metro.min.js"></script>
+    <script src="{{ STATIC_URL }}js/metro-dropdown.js"></script>
+{% endblock %}

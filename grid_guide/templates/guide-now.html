@@ -1,0 +1,188 @@
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+	<title>Destination Guide | Second Life</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+	<link rel="gettext" type="application/x-po" href="locale/en/guide.po" />
+	<link rel="stylesheet" href="css/guide.css" />
+	<script src="js/libs/jquery-1.6.4.min.js"></script>
+	<script src="js/libs/jquery.tmpl.min.js"></script>
+	<script src="js/libs/jquery.tools.1.2.5.min.js"></script>
+	<script src="js/libs/Gettext-0.06/lib/Gettext.js"></script>
+	<script src="js/locale.js"></script>
+	<script src="js/guide.js"></script>
+</head> 
+<body>
+	<div id="loading" style="display: none;">
+		<img src="img/ajax-loader.gif" width="54" height="55" alt="Ajax Loader" />
+	</div>
+	
+	<div id="view_category" class="nav" style="display: none;">
+		<div class="category">
+			<span id="categoryname"></span>
+			<a href="#" onclick="showGuide('categories'); return false;" class="secondary" data-translate="true">Back to categories</a>
+		</div>
+		<br clear="all" />
+	</div>
+	<div id="choose_category" class="nav">
+		<div class="category" data-translate="true">Categories</div>
+		<br clear="all" />
+	</div>
+	
+	<div id="guideTemplate" style="display: none;">
+		<div id="${name}_guide" class="list guide clearfix" style="display:none;"></div>
+	</div>
+	
+	<div id="rowTemplate" style="display: none">
+		<div class="item" data-location="${location}" data-slug="${slug}">
+			<div class="info trigger" title="
+					<div class='tooltip-arrow'></div>
+					<h2>${title}</h2>
+					<p>${description}</p>
+				">
+				<a href="secondlife:///app/teleport/${location}" onclick="showLoading(this);"><img src="" width="139" height="82" /><span class="teleport" data-translate="true">Teleport &#0155;</span></a>
+				<h2>${title}</h2>
+				<div class="population">
+					<span class="num"></span> <span data-translate="true">People</span> 
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="categories_guide" class="list">
+		<div id="busiest_nav" class="item" data-category="busiest" data-maxpop="25" data-pagesize="32" data-page="0" data-random-image="true">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('busiest'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">What's Hot Now</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+
+		<div id="floater_events_nav" class="item" data-category="floater_events">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_events'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Featured Events</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+		<div id="floater_editor_nav" class="item" data-category="floater_editor">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_editor'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Editors' Picks</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+        <div id="floater_new_nav" class="item" data-category="floater_new">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_new'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Newcomer Friendly</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+        <div id="floater_international_nav" class="item" data-category="floater_international">
+            <div class="info trigger">
+                <a href="#" onclick="showGuide('floater_international'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+                <h2 data-translate="true">International</h2>
+                <div class="count">
+                    <span class="num"></span> <span data-translate="true">Destinations</span>
+                </div>
+                <br clear="all" />
+            </div>
+        </div>
+		<div id="floater_chat_nav" class="item" data-category="floater_chat">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_chat'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Chat Hot Spots</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+		<div id="floater_clubs_nav" class="item" data-category="floater_clubs">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_clubs'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Clubs</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+		<div id="floater_adventure_nav" class="item" data-category="floater_adventure">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_adventure'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Adventure/Fantasy</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+		<div id="floater_games_nav" class="item" data-category="floater_games">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_games'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Games</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+		<div id="floater_beaches_nav" class="item" data-category="floater_beaches">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_beaches'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Beaches</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+		<div id="floater_romance_nav" class="item" data-category="floater_romance">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_romance'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Romantic</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+		<div id="floater_adult_nav" class="item" data-category="floater_adult">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_adult'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Adult</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+		<div id="floater_premium_nav" class="item" data-category="floater_premium">
+			<div class="info trigger">
+				<a href="#" onclick="showGuide('floater_premium'); return false;"><img src="img/pix.gif" width="139" height="82" /></a>
+				<h2 data-translate="true">Premium</h2>
+				<div class="count">
+					<span class="num"></span> <span data-translate="true">Destinations</span>
+				</div>
+				<br clear="all" />
+			</div>
+		</div>
+	</div>
+</body> 
+</html> 
+

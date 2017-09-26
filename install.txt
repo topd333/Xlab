@@ -1,0 +1,137 @@
+0. Prepare directories, user and group
+
+	sudo su
+	groupadd django
+	useradd -g django -d /srv/wsgi django
+
+	virtualenv --no-site-packages /srv/wsgi
+	mkdir /srv/wsgi/media /srv/wsgi/static
+
+  (.vimrc)
+  cat<<EOF>/srv/wsgi/.vimrc
+set tabstop=2
+set expandtab
+set softtabstop=2
+set shiftwidth=2
+filetype indent on
+EOF
+
+	chown -R django:django /srv/wsgi
+
+1. Install required libraries
+
+	. bin/activate
+
+	pip install -r requirements.txt
+
+
+2. Settings
+
+	cp local_settings.py.template local_settings.py
+	cp mod_wsgi.py.template mod_wsgi.py
+	
+	generate a secret key for django
+
+		python manage.py shell
+		copy to prompt...
+
+		  from django.utils.crypto import get_random_string
+
+		  chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+		  get_random_string(50, chars)
+		
+		save generated key for local_settings.py
+
+	edit local_settings.py
+	
+	edit mod_wsgi.py and alter settings under 'Server Settings'
+
+
+3. Create directories for static/media
+
+        mkdir /srv/www/media /srv/www/static
+
+
+4. Apache configuration
+
+	edit /etc/apache2/default-server.conf adding
+        	WSGIPythonHome "/srv/wsgi/"
+		WSGIPythonPath "/srv/wsgi/lib/python2.7/site-packages"
+
+copy to /etc/apache2/vhosts.d/xlab.conf ...
+
+<VirtualHost 192.168.2.253:80>
+
+    WSGIDaemonProcess aelerons user=django group=django processes=2 display-name=%{GROUP}
+    WSGIProcessGroup aelerons
+
+    WSGIScriptAlias / /srv/wsgi/Aelerons/xlab/mod_wsgi.py
+
+    
+    ServerAdmin jamesh@bluewallgroup.com
+    ServerName aelerons.bluewallgroup.com
+    DocumentRoot /srv/wsgi/Aelerons
+    ErrorLog /var/log/apache2/alerons-error_log
+    CustomLog /var/log/apache2/aelerons-access_log combined
+    HostnameLookups Off
+    UseCanonicalName Off
+    ServerSignature On
+
+    <Directory "/srv/wsgi/Aelerons">
+	    Options Indexes FollowSymLinks
+	    AllowOverride None
+	    Order allow,deny
+	    Allow from all
+    </Directory>
+
+    <Directory  /srv/wsgi/Aelerons/xlab >
+  	Order allow,deny
+  	Allow from all
+    </Directory>
+
+  Alias /static/ /srv/wsgi/static/
+
+  <Directory /srv/wsgi/static>
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  Alias /media/ /srv/wsgi/media/
+
+  <Directory /srv/wsgi/media>
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+</VirtualHost>
+
+
+5. Aelerons application log
+
+	cd /srv/wsgi/Aelerons
+	touch xlab.log
+        chown wwwrun xlab.log
+
+6. Database
+
+	python manage.py syncdb
+
+
+7. Restart Apache
+
+	rcapache2 configtest
+	systemctl restart apache2
+
+8. Login to xlab
+
+	Navigate to User Name/Site Admin
+	Select Sites
+	Change example.com to host+net name and save
+
+	Navigate to User Name/Site Settings
+	"Grid User" settings are only needed to migrate
+	existing users
+        Change the "Site Settings / Welcome Page" values and save
+
+
+

@@ -1,0 +1,104 @@
+{% extends "base-join.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="header">
+    <div class="container">
+        <div class="header-inner">
+            <div class="logo">
+                <a href="javascript:void(0)">
+                    <img src="{{ STATIC_URL }}images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="language">
+                <ul class="language-select">
+                    <li><a href="javascript:void(0)"> Language  <i class="fa fa-angle-double-down"> </i> </a> 
+                        <ul class="no-display">
+                            <li> <a href="javascript:void(0)">English</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">日本語</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Deutsch</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Français</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Español</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Português</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Italiano</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">Türkçe</a>
+                            </li>
+                            <li> <a href="javascript:void(0)">русская</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="bottom-bg">
+        <div class="container">
+            <div class="inner-wizard">
+                <div class="welcome-message">
+                    <div class="tab-section">
+                        <div class="page-heading">Welcome to LinkinULife</div>
+                        <div class="page-detail clearfix">
+
+                            <div class="page-detail-left">
+                              {% if avatarurl %}
+                                <img src="{{ STATIC_URL }}images/avtar/{{ avatarurl }}" alt="">
+
+                              {% endif %}
+                            </div>
+                            <div class="page-detail-right page-detail-right-min">
+
+                                <div class="linkinu-step">
+                                    <div class="welcome-txt">Welcome, {{ username }}</div>
+
+                                    <ul class="account-success">
+                                        <li class="green-part">Your Account is Activated.</li>
+                                        <li class="blue-part">Your Avatar is waiting fo you!</li>
+                                    </ul>
+
+                                    <div class="acc-btn"> <a class="chexk-avail-activate" href="#">Download & Install Linkinu Life</a> 
+                                    </div>
+
+                                    <div class="account-active-bottom">
+                                        <p>To explore, communicate and coonect is Linkinu Life, You’ll need to download our 3D browsing software. It’s fast and easy to install.</p>
+                                        <p>Linkinu Life is completely free.</p>
+                                    </div>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+
+{% block footer %}
+
+{% endblock footer %}
+
+
+
+{% block extrastyles %}
+
+{% endblock %}
+
+{% block extrascripts %}
+
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends "grid_my/layout_2_col.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="top-heading">Contact Information : ﻟﺒﻦ ﻋﺼﻔﻮﺭ</div>
+        <div class="info-txt">If you want to change your contact information, you may do so below. Be sure to click the <b>Save Changes</b> button when you are done.</div>
+
+        <div class="section-right-full">
+
+
+            <ul class="contact-info">
+                <li>
+                    <div class="contact-info-left">Email Address:</div>
+                    <div class="contact-info-right">
+                        <input type="text" class="txt-field">
+                    </div>
+                </li>
+
+                <li>
+                    <div class="contact-info-left">
+                        <p>Current Password:</p>
+                        <p>(for verification)</p>
+                    </div>
+                    <div class="contact-info-right">
+                        <input type="text" class="txt-field">
+                    </div>
+                </li>
+
+                <li>
+                    <div class="contact-info-left">&nbsp;</div>
+                    <div class="contact-info-right">
+                        <input id="checkbox1" type="checkbox" name="checkbox" value="1">
+                        <label for="checkbox1">I would like to receive offline IMs via Email</label>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="contact-info-left">&nbsp;</div>
+                    <div class="contact-info-right">
+                        <input type="button" class="btn-field" value="Save changes">
+                    </div>
+                </li>
+
+            </ul>
+
+
+
+            <ul class="contact-info">
+                <li>
+                    <div class="contact-info-left">* Address 1:</div>
+                    <div class="contact-info-right">
+                        <input type="text" class="txt-field">
+                    </div>
+                </li>
+
+                <li>
+                    <div class="contact-info-left">Address 2 :</div>
+                    <div class="contact-info-right">
+                        <input type="text" class="txt-field">
+                    </div>
+                </li>
+
+                <li>
+                    <div class="contact-info-left">* City:</div>
+                    <div class="contact-info-right">
+                        <input type="text" class="txt-field">
+                    </div>
+                </li>
+
+                <li>
+                    <div class="contact-info-left">* Country:</div>
+                    <div class="contact-info-right">
+                        <div class="contry-list">
+                            <select name="country_id" id="" class="gen" tabindex="1">
+                                <option>Select Country</option>
+                                <option>Afghanistan</option>
+                                <option>Albania</option>
+                                <option>Algeria</option>
+                                <option>Andorra</option>
+                                <option>Angola</option>
+                                <option>Antigua and Barbuda</option>
+                            </select>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="contact-info-left">State/Province/Region:</div>
+                    <div class="contact-info-right">
+                        <input type="text" class="txt-field">
+                    </div>
+                </li>
+
+                <li>
+                    <div class="contact-info-left">* ZIP/Postal Code:</div>
+                    <div class="contact-info-right">
+                        <input type="text" class="txt-field">
+                    </div>
+                </li>
+
+
+
+                <li>
+                    <div class="contact-info-left">&nbsp;</div>
+                    <div class="contact-info-right">
+                        <input type="button" class="btn-field" value="Save changes">
+                    </div>
+                </li>
+
+            </ul>
+
+
+        </div>
+
+{% endblock content %}

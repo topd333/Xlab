@@ -1,0 +1,69 @@
+DEV_TEST_VIEWS = True
+
+ADMINS = (
+    ('Admin User', 'jamesh@linkinulife.com'),
+)
+MANAGERS = ADMINS
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'aelerons_dev',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': 'django',
+        'PASSWORD': 'tx2lvl3',
+        'HOST': '127.0.0.1',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '3306',                      # Set to empty string for default.
+    }
+}
+
+
+
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'l$ykc35%f&s8dmqvcpsl29@pj8**3&abg$8+l*%(ad=&z*6jkh'
+
+# Site Application
+SITE_NAME = 'Linkinu'
+SITE_TITLE = 'Linkinu'
+
+
+# Welecome Application
+WELCOME_HEADING = 'Linkinu'
+WELCOME_TITLE = 'Linkinu'
+
+# grid_user application
+# Activation link, etc.
+ACCOUNT_SERVER_ADDRESS = 'http://linkinulife.com'
+
+LOGIN_URL="/login"
+AUTH_USER_MODEL = 'grid_user.User'
+AUTH_SERVER_URL = 'http://linkinulife.com:8003'
+ACCOUNT_SERVER_URL = 'http://linkinulife.com:8003'
+ACCOUNT_ADMIN_EMAIL = 'jamesh@linkinulife.com'
+
+XMLRPC_GATEWAY_IP = '144.76.18.178'
+
+
+## grid_space application
+# Address of server for aelerons region ini
+INI_SERVER_ADDRESS = 'http://linkinulife.com'
+
+# Grid-Wide Estate Database Default Settings
+ESTATE_DATABASE='estates'
+ESTATE_DATASOURCE='linkinulife.com'
+ESTATE_DATABASE_PORT='3308'
+ESTATE_DATABASE_USER='os_estates'
+ESTATE_DATABASE_PASSWORD='ReineiKa3PaL'
+
+# Default Estate Settings
+DEFAULT_ESTATE_NAME = "Mainland"
+DEFAULT_ESTATE_OWNER_NAME = "Governor LinkniU"
+
+
+# Settings for grid user database for import.
+USER_DATA_HOST="127.0.0.1"
+USER_DATA_USERNAME="root"
+USER_DATA_USERPASS="4EZGFNt0ypsqR6PbjNi9"
+USER_DATA_DBNAME="robust_grid"

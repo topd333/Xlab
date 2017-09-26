@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-14 21:19+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: xlab/templates/index.html:12
+msgid ""
+"We are under heavy construction and things will be very dynamic. Please have "
+"fun as we work."
+msgstr ""
+
+#. Translators: We will display user's language information here for a test
+#: xlab/templates/index.html:17
+msgid "Language Support Information"
+msgstr ""
+
+#. Translators: This is the i18n language code, we need the label
+#: xlab/templates/index.html:21
+msgid "Language Code"
+msgstr ""
+
+#. Translators: This is the i18n language name, we need the label
+#: xlab/templates/index.html:23
+msgid "Language Name"
+msgstr ""
+
+#. Translators: This is the i18n language name in English, we need the label
+#: xlab/templates/index.html:25
+msgid "English Name"
+msgstr ""
+
+#. Translators: This indicates whether the language is BIDI, we need the label
+#: xlab/templates/index.html:27
+msgid "BIDI"
+msgstr ""
+
+#: xlab/templates/register.html:62
+#, fuzzy
+msgid "Terms of Service"
+msgstr "सेवा की शर्तें बदलें"
+
+#: xlab/templates/register.html:66
+msgid "Replace With Terms of Service"
+msgstr "सेवा की शर्तें बदलें"
+
+#: xlab/templates/register.html:90
+#, fuzzy
+msgid "Accept And Create Account"
+msgstr "नया खाता बनाएँ"
+
+#: xlab/templates/register.html:107
+msgid "Create New Account"
+msgstr "नया खाता बनाएँ"
+
+#: xlab/templates/register.html:116
+msgid "Email Address"
+msgstr "ईमेल एड्रेस"
+
+#: xlab/templates/register.html:125
+msgid "First Name"
+msgstr "पहला नाम"
+
+#: xlab/templates/register.html:134
+msgid "Last Name"
+msgstr "अंतिम नाम"
+
+#: xlab/templates/register.html:143
+msgid "Password"
+msgstr "पासवर्ड"
+
+#: xlab/templates/register.html:154
+msgid "Submit"
+msgstr "जमा करें"

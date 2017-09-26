@@ -1,0 +1,315 @@
+{% extends "grid_my/layout_2_col.html" %}
+{% load i18n %}
+
+{% block content %}
+
+    <div class="top-heading"> Buy Ln$ </div>
+
+    <div class="info-txt">Ln$ are used in LinkinU Life to purchase virtual goods and services like a new shirt or hair, attend events, play games and more. How many Linden Dollars (Ln$) would you like to purchase? </div>
+
+    <div class="my-fund">
+      <form id="placeorderform" method="POST" action=".">
+      {% csrf_token %}
+        <div class="my-fund-left">
+            {% if error %}
+              <p id="err" style="color:#B94A48;"> {{ error }}</p>
+            {% endif %}
+            <table width="100%" border="0" class="my-fund-table">
+                <tr>
+                    <td>Linden Dollars (Ln$) </td>
+                    <td>&nbsp;</td>
+                    <td>US Dollars (US$)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="linkidollar" class="my-fund-field" id="linkidollar">
+                    </td>
+                    <td align="center"><img src="{{ STATIC_URL }}images/add.png" alt="">
+                    </td>
+                    <td>
+                        <input type="text" name="usdollar" class="my-fund-field" id="usdollar">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                      <p id="errormsg" style="color:#B94A48;">&nbsp;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Purchasing</td>
+                    <td>&nbsp;</td>
+                    <td class="purchasing">Ln$ 0</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Estimated Cost</p>
+                        <p>Transaction Fee</p>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <p class="estimatedcost">US$ 0.00</p>
+                        <p class="transactionfee">US$ 0.30</p>
+                        <input name="transactionfee" id="transactionfee" type="hidden" value="" />
+                        <input name="estimatedcost" id="estimatedcost" type="hidden" value="" />
+                    </td>
+                </tr>
+                <tr class="bottom-border">
+                    <td>Estimated Total</td>
+                    <td>&nbsp;</td>
+                    <td class="estimatedtotal">US$ 0.30</td>
+                    <input name="estimatedtotal" id="estimatedtotal" type="hidden" value="" />
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td><a class="my-fund-cal" href="javascript:void(0)" id="placeorder">Place Order</a>
+                    </td>
+                </tr>
+            </table>
+        </div>    
+          
+      </form>
+        
+
+        <div class="my-fund-right">
+            <h3>Your Current Balances</h3>
+
+            <ul class="my-fund-txt">
+                <li>
+                    <div class="my-left">Ln$</div>
+                    <div class="my-right">368</div>
+                </li>
+                <li>
+                    <div class="my-left">US$</div>
+                    <div class="my-right">0.00</div>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="extra-heading">About LindeX&#8482; Purchasing</div>
+
+    <div class="info-txt">The LindeX&#8482; exchange will automatically match your order with the best exchange rate based on the number of Linden dollars you wish to buy. If instead you enter the amount of US Dollars you want to spend the approximate number of Ln$ to purchase will be calculated automatically.</div>
+
+
+
+
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Modal title</h4>
+          </div>
+          <div class="modal-body">    
+              <p id="errormsg-model" style="color:#B94A48;">&nbsp;</p>
+              <input name="password" type="password" id="password" class="my-fund-field"/>           
+          </div>
+          <div class="modal-footer">
+            <!-- <a href="#" data-dismiss="modal" class="btn">Close</a> -->
+            <button class="btn btn-primary" id="continue"> Continue </button>
+            <!-- <a href="#" class="btn btn-primary">Save changes</a> -->
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
+
+{% endblock content %}
+
+
+{% block extrascripts %}
+
+<script src="{{ STATIC_URL }}js/parsley.js"></script>
+<script type="text/javascript">
+  var Numberexp = /^[0-9]+$/;
+  var floatRegex = '[-+]?([0-9]*.[0-9]+|[0-9]+)'; 
+  var enterLn = 'Please enter the number of Ln$s you wish to purchase'
+  var enterNum = 'The amount of Ln$ must be a whole, positive, non-zero number'
+  var enterUSD = 'Please specify a USD amount';
+  var enterFloat = 'The USD amount may contain only numbers';
+  
+  var ln = {{ LINKI_CURRENCY_RATE }};
+  var transactionfee = '0.30';
+  $(document).ready(function() {
+
+      $('#linkidollar').keyup(function(event) {
+        $(this).val() == "" ?  num = ShowError(enterLn) :  num = IsNumeric($(this).val());
+        if(num){
+          estimatedcost = LntoUs($(this));
+          $('.purchasing').text('Ln$ ' + $(this).val());
+          $('.transactionfee').text('US$ ' + transactionfee);
+          $('.estimatedcost').text('US$ ' + estimatedcost);
+
+          $('#usdollar').val(estimatedcost);
+          estimatedtotal = EstimatedTotal(estimatedcost);
+          $('.estimatedtotal').text('US$ '+ estimatedtotal);
+          $('#estimatedtotal').val(estimatedtotal);
+          checkall()
+
+        }
+        else{
+          $('.purchasing').text('Ln$ 0');
+          $('.estimatedcost').text('US$ 0.00');
+          $('.transactionfee').text('US$ 0.00');
+          $('#usdollar').val('');
+          $('.estimatedtotal').text('');
+          $('#estimatedtotal').val('');
+        }
+      });
+
+
+      $('#usdollar').keyup(function(event) {
+        $(this).val() == "" ?  num = ShowError(enterUSD) :  num = IsFloat($(this).val());
+        if(num){
+          purchasing = UstoLn($(this));
+          estimatedcost = parseFloat($(this).val()).toFixed(2)
+          $('#linkidollar').val(purchasing);
+          $('.purchasing').text('Ln$ ' + purchasing);
+          $('.transactionfee').text('US$ ' + transactionfee);
+          $('#transactionfee').val(transactionfee);
+          $('.estimatedcost').text('US$ ' + estimatedcost);
+          estimatedtotal = EstimatedTotal(estimatedcost);
+          $('.estimatedtotal').text('US$ '+ estimatedtotal);
+          $('#estimatedtotal').val(estimatedtotal);
+          checkall();
+        }
+        else{
+          $('.purchasing').text('Ln$ 0');
+          $('.estimatedcost').text('US$ 0.00');
+          $('.transactionfee').text('US$ 0.00');
+          $('#linkidollar').val('');
+          $('.estimatedtotal').text('');
+          $('#estimatedtotal').val('');
+
+        }
+      });
+
+
+      $('#placeorder').click(function(event) {
+        var check = checkall();
+        check ? callpopup() : 'break' ;
+
+
+      });
+
+
+  });
+
+function IsNumeric(e) {
+  var ret  = e.match(Numberexp) == null ? false : true ;
+  if (ret){
+    ShowError(' ');
+  }
+  else{
+    ShowError(enterNum);
+  }
+  return ret;
+}
+
+
+function IsFloat(e){
+  var ret  = e.match(floatRegex) == null ? false : true ;
+  if (ret){
+    ShowError(' ');
+  }
+  else{
+    ShowError(enterFloat);
+  }
+  return ret;
+}
+
+function ShowError(err){
+  $('#errormsg').text(err);
+}
+
+function callpopup(){
+
+  $('#myModal').modal({show:true})
+
+
+}
+
+
+function EstimatedTotal(escost){
+  var estotal = parseFloat(escost)  + parseFloat(transactionfee);
+  return estotal.toFixed(2);
+}
+
+
+function LntoUs(obj){
+  USamount = obj.val() / ln
+  //console.log($(this).val() / ln )
+  //console.log(Math.round( USamount * 100) / 100)
+  estcost = USamount.toFixed(2)
+  return estcost
+}
+
+
+function UstoLn(obj){
+  LNamount = obj.val() * ln
+  LNamount = Math.round( LNamount ); 
+  return LNamount
+}
+
+
+function checkall(){
+  EstimatedTotalval = $('#estimatedtotal').val();
+  if (EstimatedTotalval < 2.50){
+    entermin = 'Total cost is US$ '+ EstimatedTotalval +' which is less than the minimum buy of US$ '+ 2.50
+    ShowError(entermin)
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+
+
+
+
+
+
+
+$("#continue").click( function(){
+    datas = {
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+      password: $('#password').val()
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "{% url 'ajax-check-password' %}",
+      data: datas,
+      success: function(data) {
+        if(data.status){
+          $('#errormsg-model').text('');
+          submitbuyform();
+        }
+        else{
+          $('#errormsg-model').text('Wrong Password Please enter correct password')
+        }
+      },
+      error: function(data) {
+          alert("Error: not valid");
+      }
+    });
+
+});
+
+
+function submitbuyform(){
+  $( "#placeorderform" ).submit();
+}
+
+
+
+
+</script>
+
+{% endblock %}

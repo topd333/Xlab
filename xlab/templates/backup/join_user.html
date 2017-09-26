@@ -1,0 +1,340 @@
+{% extends "base-join.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block navigation %}
+    {% include "partials/nav_primary.html" with expand_dropdown=1 %}
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block column_left %}
+{% endblock %}
+
+{% block content %}
+
+<h1>This is new template</h1>
+<!-- <div id="step2">
+    <input type="text" name="checkusername" id="checkusername" autocomplete="off"/>
+    <div class="name-status-message" id="checking-availability" style="display: none;">
+        <img class="loading-graphic" src="{{ STATIC_URL }}img/loading_icon.gif" alt="Checking availability...">
+        <span class="checking-availability-text">Checking availability...</span>
+    </div>
+    <p class="error-username"></p>
+    <a href="javascript:;" class="check">Check Availability</a>
+    <a href="javascript:;" class="nextstep" style="display: none;">Next Step</a>
+
+</div> -->
+
+<div id="step3" >  
+
+   <!--  <div class="status-button fb-blue-button">
+        <a href="{% url 'socialauth_begin' 'facebook' %}">Login with Facebook</a>
+    </div> -->
+<!--     <div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div> -->
+<div>
+  <fb:login-button scope="user_birthday,public_profile,email" onlogin="checkLoginState();">
+  </fb:login-button>
+
+  <div id="status" class="span4"></div>
+</div>
+
+<div>
+    <span id="signinButton">
+      <span
+        class="g-signin"
+        data-callback="signinCallback"
+        data-clientid="341928341567-h5j1urj9btplo5a4eachiinktvkm8omj.apps.googleusercontent.com"
+        data-cookiepolicy="single_host_origin"
+        data-requestvisibleactions="http://schema.org/AddAction"
+        data-scope="https://www.googleapis.com/auth/plus.login">
+      </span>
+    </span>
+    <!-- <input type="button"  value="Logout" onclick="Signoutplus()" /> -->
+
+</div>
+
+<li><a href="{% url 'socialauth_begin' 'twitter' %}" >Login with Twitter</a></li>
+
+
+
+
+
+
+    {{ err_message }}  
+    {% crispy form %}
+
+
+
+    
+</div>
+
+
+
+{% endblock content %}
+
+
+{% block extrastyles %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/datepicker.css" />
+{% endblock %}
+
+{% block extrascripts %}
+
+<!-- Place this asynchronous JavaScript just before your </body> tag -->
+    <script type="text/javascript">
+      (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+       po.src = 'https://apis.google.com/js/client:plusone.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+     })();
+
+
+     function signinCallback(authResult) {
+        if (authResult['status']['signed_in']) {
+            fbLogout();
+            gapi.client.load('plus','v1', function(){
+               var request = gapi.client.plus.people.get({
+                 'userId': 'me'
+               });
+               request.execute(function(resp) {
+                 //console.log('Retrieved profile for:' + resp.displayName);
+                 $('#registration-form #id_firstname').val(resp.name.givenName);
+                 $('#registration-form #id_lastname').val(resp.name.familyName);
+                 $('#registration-form #id_dob').val(resp.birthday);
+                 $('#registration-form #id_email').val(resp.emails[0].value);
+
+               });
+            });
+            // Update the app to reflect a signed in user
+            // Hide the sign-in button now that the user is authorized, for example:
+            //document.getElementById('signinButton').setAttribute('style', 'display: none');
+        } else {
+          // Update the app to reflect a signed out user
+          // Possible error values:
+          //   "user_signed_out" - User is signed-out
+          //   "access_denied" - User denied access to your app
+          //   "immediate_failed" - Could not automatically log in the user
+          console.log('Sign-in state: ' + authResult['error']);
+        }
+      }
+
+      function Signoutplus(){
+        gapi.auth.signOut();
+        document.location.reload();
+
+      }
+    </script>
+
+
+
+
+
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      /*document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';*/
+      console.log('Please log into Facebook.')
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+
+  function fbLogout() {
+    FB.getLoginStatus(function(response) {
+        if (response && response.status === 'connected') {
+            Signoutplus();
+            FB.logout(function(response) {
+                document.location.reload();
+            });
+        }
+    });
+}
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '459855927488923',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.1' // use version 2.1
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!' + '<a href="javascript:;" id="fbLogout" onclick="fbLogout()">Logout</a>';
+        fillvalue(response);
+
+    });
+
+  }
+   
+  function fillvalue(data){
+    $('#registration-form #id_firstname').val(data.first_name);
+    $('#registration-form #id_lastname').val(data.last_name);
+    $('#registration-form #id_dob').val(data.birthday);
+    $('#registration-form #id_email').val(data.email);
+  }
+
+
+</script>
+<!-- <script data-main="{{ STATIC_URL }}js/oauth.js" src="{{ STATIC_URL }}js/require.js"></script>
+
+<script src="{{ STATIC_URL }}js/Twitter.js"></script>
+
+<script type="text/javascript">
+  
+function tw(){
+
+  var config = {
+      "consumerKey": "afTcBIKsB1qR1W2CSqSGzwCkA",
+      "consumerSecret": "CEx82AQFsy7N3fSUlgc0wg6E50reEi8es7K5peMTw1wJG6LGBk",
+      "accessToken": "628195259-jxGcYdTm9MoJ42hyY8ha135fr8yuvohKyGnswyZN",
+      "accessTokenSecret": "8CfHtGSe1quKcDEO0Kqkhv9zU7uc2Jj1ZLKjE6zX3pwZO",
+      "callBackUrl": "http://localhost:8000/join/"
+  }
+  var error = function (err, response, body) {
+    console.log('ERROR [%s]', err);
+  };
+  var success = function (data) {
+      console.log('Data [%s]', data);
+  };
+
+  var twitter = new Twitter(config);
+  console.log(twitter)
+  twitter.getUserTimeline({ screen_name: 'BoyCook', count: '10'}, error, success);
+  twitter.getMentionsTimeline({ count: '10'}, error, success);
+  twitter.getHomeTimeline({ count: '10'}, error, success);
+  twitter.getReTweetsOfMe({ count: '10'}, error, success);
+  twitter.getTweet({ id: '1111111111'}, error, success);
+
+}
+
+
+</script> -->
+
+<script src="{{ STATIC_URL }}js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+
+  
+//var urls = '/account/ajax/ajax_checkusername';
+
+    $('.check').click(function(){
+        var alphaexp = /^[0-9a-zA-Z]+$/;
+        var username = $('#checkusername').val();
+        var flag = false;
+
+        if(username=="" || username.match(alphaexp)==null){            
+            flag = false;
+            $('.error-username').html("Names must be at least 2 characters in length.")
+        }
+        else{
+            flag = true;
+        }
+
+        $('#checkusername').focus(function(event) {
+            $('.error-username').html("")
+            $('.check').css("display", "block");
+            $('.nextstep').css("display", "none");
+        });
+
+        data = {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            username: username
+        }
+        if(flag){
+            $('#checking-availability').css("display", "block");
+            $.ajax({
+                type: "POST",
+                url: '/account/ajax/ajax_checkusername',
+                data: data,           
+                }).done(function(msg) {
+                    $('#checking-availability').css("display", "none");
+                    if (msg.available){
+                        $('.error-username').html("It's available");
+                        $('.check').css("display", "none");
+                        $('.nextstep').css("display", "block");
+                        
+
+                    }
+                    else{
+                        $('.error-username').html("That name is taken.  Try again.")
+                    }
+
+                });
+
+        }
+        $('.nextstep').click(function(event) {
+            //$('#step2').hide();
+            $('#id_username').val(username);
+            //$('#step3').show();
+        });
+
+    })
+
+$('.dateinput').datepicker();
+
+</script>
+
+{% endblock %}

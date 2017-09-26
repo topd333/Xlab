@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+{% block body_content %}
+{% include navbar %}
+Email = {{ email }}<br>
+First Name = {{ firstname }}<br>
+Last Name = {{ lastname }}<br>
+Password = {{ password }}<br>
+Key = {{ activation_key }}<br>
+{% endblock %}
+{% endblock %}
